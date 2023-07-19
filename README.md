@@ -1,79 +1,52 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+본 템플릿은 React Native CLI 0.72에 Yarn, TypeScript, Redux, DotEnv, TSLint, AsyncStorage, Navigation, ImagePicker, ReAnimated, SafeAreaContext, SVG, StyledComponents가 적용되어 있는 템플릿입니다.
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+>**Note**: Intellij IDEA Ultimate 프로그램을 기준으로 작성되었으며, Package명 변경을 위해 부가적으로 Android Studio와 Xcode가 필요합니다.
 
-## Step 1: Start the Metro Server
+## Step 1: App 이름 변경하기
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+<h3>Android App Name 변경하기</h3>
+<ol>
+   <li>Intellij IDEA Ultimate를 사용하여 받아온 템플릿을 열어주세요.</li>
+   <li><code>android/app/src/res/values/strings.xml</code>에 들어가서 <code>app_name</code>에 원하는 App Name을 입력해주세요.</li>
+</ol>
 
-To start Metro, run the following command from the _root_ of your React Native project:
+<h3>iOS App Name 변경하기</h3>
+<ol>
+   <li>Intellij IDEA Ultimate를 사용하여 받아온 템플릿을 열어주세요.</li>
+   <li><code>ios/rn_boiler_plate/Info.plist</code>에 들어가서 <code>CFBundleDisplayName</code>에 원하는 App Name을 입력해주세요.</li>
+</ol>
+
+## Step 2: Package Name 변경하기
+
+<h3>Android Package Name 변경하기</h3>
+<ol>
+   <li>Android Studio로 <code>rn_boiler_plate/android</code> 폴더를 열어주세요.</li>
+   <li><code>rn_boiler_plate/app/java/com.rn_boiler_plate</code> 폴더를 개발자명 또는 조직명으로 Rename 해주시고 Do Refactor를 눌러주세요.</li>
+   <li><code>rn_boiler_plate/app/java/com.[개발자명 또는 조직명]</code> 폴더를 우클릭하고 <code>New > Package</code>를 누르셔서 App Name을 입력해서 생성해주세요.</li>
+   <li><code>rn_boiler_plate/app/java/com.[개발자명 또는 조직명]</code> 폴더 안에 있는 <code>Java</code> 파일을 모두 <code>rn_boiler_plate/app/java/com.[개발자명 또는 조직명].[App Name]</code> 폴더로 옮겨주세요. 만약, Do Refactor 창이 뜬다면 Do Refactor 버튼을 눌러주세요.</li>
+   <li><code>rn_boiler_plate/app/java/com.[개발자명 또는 조직명].[App Name]/MainApplication.java</code> 파일을 열어서 <code>import com.[개발자명 또는 조직명]</code> 코드를 <code>import com.[개발자명 또는 조직명].[App Name]</code>으로 변경해주세요.</li>
+   <li><code>rn_boiler_plate/app/manifests</code>에 들어가서 <code>manifest</code> 안에 있는 <code>xmlns:android="http://schemas.android.com/apk/res/android"</code> 코드를 <code>xmlns:android="http://schemas.android.com/apk/res/android" package="com.[개발자명 또는 조직명].[App Name]"</code>으로 변경해주세요.</li>
+      <li><code>Gradle Scripts/build.gradle (Module :app)</code>에 들어가셔서 <code>android</code> 안에 있는 <code>namespace</code>와 <code>applicationId</code>의 내용을 <code>com.[개발자명 또는 조직명].[App Name]</code>으로 변경해주세요.</li>
+</ol>
+
+<h3>iOS Package Name 변경하기</h3>
+
+## Step 3: Package 가져오고 설정하기
+<ol>
+   <li>Xcode로 <code>rn_boiler_plate/ios</code> 폴더를 열어주세요.</li>
+   <li>좌측 상단 디렉토리 부분에 <code>rn_boiler_plate</code> 폴더를 클릭해주세요.</li>
+   <li>TARGETS에 있는 rn_boiler_plate를 클릭 후 Bundle Identifier에 있는 내용을 <code>com.[개발자명 또는 조직명].[App Name]</code>으로 변경해주세요.</li>
+   <li>TARGETS에 있는 rn_boiler_plateTests를 클릭 후 Bundle Identifier에 있는 내용을 <code>com.[개발자명 또는 조직명].[App Name]Tests</code>으로 변경해주세요.</li>
+</ol>
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+cd android && ./gradlew clean && cd ..
+cd ios && pod install && cd ..
+yarn install
 ```
 
-## Step 2: Start your Application
+## 모든 설정이 끝났습니다! :tada:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+이제 즐겁게 개발하시면 됩니다! :partying_face:
